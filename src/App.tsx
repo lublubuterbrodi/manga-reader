@@ -233,10 +233,6 @@ function App() {
         </div>
 
         <div className="reader-support">
-          <div className="reader-support-icon">💜</div>
-
-          <h2>Enjoyed the manga?</h2>
-
           <p>
             Support the project and help us keep the reader running and bring
             you more manga.
@@ -270,10 +266,6 @@ function App() {
           >
             Support the Project
           </button>
-
-          <span className="reader-support-note">
-            Every contribution helps 💜
-          </span>
         </div>
       </main>
     );
