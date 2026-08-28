@@ -30,7 +30,7 @@ type SupportProgress = {
   goal: number;
 };
 
-const API_URL = "https://api.173.249.59.215.sslip.io";
+const API_URL = "";
 const BOT_USERNAME = "YOURSUNBAEBOT";
 
 function App() {
