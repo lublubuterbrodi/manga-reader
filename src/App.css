@@ -301,38 +301,29 @@ button {
 }
 
 .reader-support-button {
-   width: 100%;
-   max-width: 320px;
+   width: auto;
+   max-width: none;
 
-   padding: 15px 20px;
+   padding: 4px 8px;
 
    border: 0;
-   border-radius: 14px;
+   background: transparent;
 
-   color: #ffffff;
-
-   background:
-      linear-gradient(90deg,
-         #7c3aed 0%,
-         #8b5cf6 55%,
-         #a855f7 100%);
+   color: #a855f7;
 
    font-size: 15px;
-   font-weight: 700;
-
-   box-shadow:
-      0 8px 24px rgba(124, 58, 237, 0.28);
+   font-weight: 600;
 
    cursor: pointer;
 
    transition:
-      transform 0.15s ease,
+      color 0.15s ease,
       opacity 0.15s ease;
 }
 
 .reader-support-button:active {
-   transform: scale(0.98);
-   opacity: 0.9;
+   color: #c084fc;
+   opacity: 0.7;
 }
 
 .reader-support-note {
