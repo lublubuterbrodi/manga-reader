@@ -1,0 +1,163 @@
+* {
+   box-sizing: border-box;
+}
+
+html {
+   background: #0f0f0f;
+}
+
+body {
+   margin: 0;
+   background: #0f0f0f;
+   color: white;
+   font-family:
+      Inter,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+}
+
+button {
+   font: inherit;
+}
+
+.page {
+   width: 100%;
+   min-height: 100vh;
+   padding: 18px 14px 32px;
+}
+
+.grid {
+   display: grid;
+   grid-template-columns: repeat(6, 1fr);
+   gap: 10px;
+
+   width: 100%;
+   max-width: 620px;
+   margin: 0 auto;
+}
+
+.manga-card {
+   grid-column: span 2;
+
+   padding: 0;
+   border: 0;
+   background: transparent;
+   color: inherit;
+   text-align: left;
+   cursor: pointer;
+}
+
+/* Последние две карточки центрируем */
+.manga-card:nth-child(4) {
+   grid-column: 2 / span 2;
+}
+
+.manga-card:nth-child(5) {
+   grid-column: 4 / span 2;
+}
+
+.manga-card:disabled {
+   cursor: default;
+}
+
+.cover {
+   display: block;
+   width: 100%;
+   aspect-ratio: 2 / 3;
+   object-fit: cover;
+   border-radius: 14px;
+   background: #202020;
+}
+
+.title {
+   margin-top: 8px;
+   padding: 0 4px;
+   font-size: 14px;
+   font-weight: 600;
+   line-height: 1.3;
+   text-align: center;
+}
+
+.status {
+   margin: 60px auto;
+   text-align: center;
+   color: #b5b5b5;
+}
+
+.error-status {
+   margin-top: 10px;
+   margin-bottom: 20px;
+}
+
+.loading-overlay {
+   margin-top: 24px;
+   text-align: center;
+   color: #b5b5b5;
+}
+
+.reader-page {
+   width: 100%;
+   min-height: 100vh;
+   background: #000;
+}
+
+.reader-header {
+   position: sticky;
+   top: 0;
+   z-index: 10;
+
+   display: flex;
+   align-items: center;
+   gap: 12px;
+
+   padding: 12px 14px;
+
+   background: rgba(15, 15, 15, 0.94);
+   backdrop-filter: blur(10px);
+}
+
+.back-button {
+   flex-shrink: 0;
+
+   padding: 8px 12px;
+
+   border: 0;
+   border-radius: 10px;
+
+   background: #232323;
+   color: white;
+
+   cursor: pointer;
+}
+
+.reader-title {
+   min-width: 0;
+
+   font-size: 14px;
+   font-weight: 600;
+
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
+.reader {
+   width: 100%;
+   max-width: 900px;
+   margin: 0 auto;
+}
+
+.reader-image {
+   display: block;
+
+   width: 100%;
+   height: auto;
+
+   margin: 0 0 10px 0;
+   padding: 0;
+
+   background: #111;
+}
