@@ -190,7 +190,7 @@ function App() {
   if (loadingBatch) {
     return (
       <main className="page">
-        <p className="status">Loading v2...</p>
+        <p className="status">Loading...</p>
       </main>
     );
   }
@@ -208,7 +208,7 @@ function App() {
       <main className="reader-page">
         <div className="reader-header">
           <button type="button" className="back-button" onClick={closeManga}>
-            ← Назад
+            ← Back
           </button>
 
           <div className="reader-title">{selectedManga.title}</div>
