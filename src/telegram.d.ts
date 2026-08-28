@@ -6,6 +6,7 @@ declare global {
       WebApp: {
         ready: () => void;
         expand: () => void;
+        openTelegramLink: (url: string) => void;
       };
     };
   }

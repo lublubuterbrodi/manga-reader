@@ -29,6 +29,31 @@ button {
    padding: 18px 14px 32px;
 }
 
+.support-banner {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 6px;
+   margin-bottom: 14px;
+   font-size: 12px;
+   color: #8b8b8b;
+   text-align: center;
+}
+
+.support-link {
+   padding: 0;
+   border: 0;
+   background: transparent;
+   color: #6f5bd3;
+   font: inherit;
+   font-weight: 600;
+   cursor: pointer;
+}
+
+.support-link:active {
+   opacity: 0.65;
+}
+
 .grid {
    display: grid;
    grid-template-columns: repeat(6, 1fr);
@@ -160,4 +185,121 @@ button {
    padding: 0;
 
    background: #111;
+}
+
+.reader-support {
+   margin: 32px 16px 48px;
+   padding: 32px 24px;
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+
+   text-align: center;
+
+   border-radius: 24px;
+   background: var(--tg-theme-secondary-bg-color, #f5f5f5);
+}
+
+.reader-support-icon {
+   margin-bottom: 12px;
+
+   font-size: 36px;
+}
+
+.reader-support h2 {
+   margin: 0;
+
+   font-size: 22px;
+   font-weight: 700;
+}
+
+.reader-support p {
+   max-width: 320px;
+
+   margin: 10px 0 20px;
+
+   font-size: 14px;
+   line-height: 1.5;
+
+   opacity: 0.7;
+}
+
+.reader-support-button {
+   width: 100%;
+   max-width: 280px;
+
+   padding: 14px 20px;
+
+   border: 0;
+   border-radius: 14px;
+
+   font-size: 15px;
+   font-weight: 600;
+
+   cursor: pointer;
+
+   color: #ffffff;
+   background: #8b5cf6;
+}
+
+.reader-support-button:active {
+   transform: scale(0.98);
+}
+
+.reader-support-note {
+   margin-top: 12px;
+
+   font-size: 12px;
+
+   opacity: 0.55;
+}
+
+.support-progress {
+   width: 100%;
+   max-width: 320px;
+
+   margin-bottom: 20px;
+}
+
+.support-progress-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 12px;
+
+   margin-bottom: 8px;
+
+   font-size: 13px;
+}
+
+.support-progress-header span {
+   opacity: 0.65;
+}
+
+.support-progress-header strong {
+   white-space: nowrap;
+
+   font-size: 13px;
+}
+
+.support-progress-track {
+   width: 100%;
+   height: 10px;
+
+   overflow: hidden;
+
+   border-radius: 999px;
+
+   background: rgba(128, 128, 128, 0.2);
+}
+
+.support-progress-fill {
+   height: 100%;
+
+   border-radius: inherit;
+
+   background: #8b5cf6;
+
+   transition: width 0.4s ease;
 }

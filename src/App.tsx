@@ -25,30 +25,38 @@ type MangaResponse = {
   pages: MangaPage[];
 };
 
-const API_URL = "http://localhost:3000";
+type SupportProgress = {
+  stars: number;
+  goal: number;
+};
+
+const API_URL = "http://127.0.0.1:3001";
+const BOT_USERNAME = "YOURSUNBAEBOT";
 
 function App() {
+  const params = new URLSearchParams(window.location.search);
+  const batchId = params.get("batch");
+
   const [batch, setBatch] = useState<BatchResponse | null>(null);
   const [selectedManga, setSelectedManga] = useState<MangaResponse | null>(
     null,
   );
 
-  const [loadingBatch, setLoadingBatch] = useState(true);
+  const [loadingBatch, setLoadingBatch] = useState(Boolean(batchId));
   const [loadingManga, setLoadingManga] = useState(false);
 
   const [error, setError] = useState("");
+
+  const [supportProgress, setSupportProgress] =
+    useState<SupportProgress | null>(null);
 
   useEffect(() => {
     const telegram = window.Telegram?.WebApp;
 
     telegram?.ready();
     telegram?.expand();
-    const params = new URLSearchParams(window.location.search);
-    const batchId = params.get("batch");
 
     if (!batchId) {
-      setError("Batch ID не указан");
-      setLoadingBatch(false);
       return;
     }
 
@@ -71,7 +79,7 @@ function App() {
         setError(
           error instanceof Error
             ? error.message
-            : "Не удалось загрузить подборку",
+            : "Sorry, couldn't load the batch. Please try again later.",
         );
       } finally {
         setLoadingBatch(false);
@@ -79,7 +87,31 @@ function App() {
     }
 
     loadBatch();
+  }, [batchId]);
+
+  useEffect(() => {
+    async function loadSupportProgress() {
+      try {
+        const response = await fetch(`${API_URL}/api/support-progress`);
+
+        if (!response.ok) {
+          return;
+        }
+
+        const data: SupportProgress = await response.json();
+
+        setSupportProgress(data);
+      } catch (error) {
+        console.error("Failed to load support progress:", error);
+      }
+    }
+
+    loadSupportProgress();
   }, []);
+
+  const supportPercent = supportProgress
+    ? Math.min(100, (supportProgress.stars / supportProgress.goal) * 100)
+    : 0;
 
   async function openManga(mangaId: number) {
     setLoadingManga(true);
@@ -106,7 +138,9 @@ function App() {
       console.error(error);
 
       setError(
-        error instanceof Error ? error.message : "Не удалось загрузить мангу",
+        error instanceof Error
+          ? error.message
+          : "Sorry, couldn't load the manga. Please try again later.",
       );
     } finally {
       setLoadingManga(false);
@@ -122,10 +156,23 @@ function App() {
     });
   }
 
+  function openSupport() {
+    const url = `https://t.me/${BOT_USERNAME}?start=support`;
+
+    const telegram = window.Telegram?.WebApp;
+
+    if (telegram?.openTelegramLink) {
+      telegram.openTelegramLink(url);
+      return;
+    }
+
+    window.open(url, "_blank");
+  }
+
   if (loadingBatch) {
     return (
       <main className="page">
-        <p className="status">Загрузка...</p>
+        <p className="status">Loading...</p>
       </main>
     );
   }
@@ -166,6 +213,50 @@ function App() {
             />
           ))}
         </div>
+
+        <div className="reader-support">
+          <div className="reader-support-icon">💜</div>
+
+          <h2>Enjoyed the manga?</h2>
+
+          <p>
+            Support the project and help us keep the reader running and bring
+            you more manga.
+          </p>
+
+          {supportProgress && (
+            <div className="support-progress">
+              <div className="support-progress-header">
+                <span>Monthly goal</span>
+
+                <strong>
+                  {supportProgress.stars} / {supportProgress.goal} ⭐
+                </strong>
+              </div>
+
+              <div className="support-progress-track">
+                <div
+                  className="support-progress-fill"
+                  style={{
+                    width: `${supportPercent}%`,
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
+          <button
+            type="button"
+            className="reader-support-button"
+            onClick={openSupport}
+          >
+            Support the Project
+          </button>
+
+          <span className="reader-support-note">
+            Every contribution helps 💜
+          </span>
+        </div>
       </main>
     );
   }
@@ -177,7 +268,13 @@ function App() {
   return (
     <main className="page">
       {error && <p className="status error-status">{error}</p>}
+      <div className="support-banner">
+        <span>Support the project, so it doesn't close...</span>
 
+        <button type="button" className="support-link" onClick={openSupport}>
+          Read more
+        </button>
+      </div>
       <div className="grid">
         {batch.mangas.map((manga) => (
           <button
@@ -198,7 +295,7 @@ function App() {
         ))}
       </div>
 
-      {loadingManga && <div className="loading-overlay">Загрузка манги...</div>}
+      {loadingManga && <div className="loading-overlay">Loading...</div>}
     </main>
   );
 }
