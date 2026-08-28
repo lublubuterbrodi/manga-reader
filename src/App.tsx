@@ -190,7 +190,7 @@ function App() {
   if (loadingBatch) {
     return (
       <main className="page">
-        <p className="status">Loading...</p>
+        <p className="status">Loading v2...</p>
       </main>
     );
   }
