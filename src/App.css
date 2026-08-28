@@ -189,7 +189,7 @@ button {
 
 .reader-support {
    margin: 32px 16px 48px;
-   padding: 32px 24px;
+   padding: 30px 24px 26px;
 
    display: flex;
    flex-direction: column;
@@ -198,17 +198,28 @@ button {
    text-align: center;
 
    border-radius: 24px;
-   background: var(--tg-theme-secondary-bg-color, #f5f5f5);
+   border: 1px solid #262626;
+
+   background:
+      linear-gradient(180deg,
+         #171717 0%,
+         #111111 100%);
+
+   box-shadow:
+      0 18px 50px rgba(0, 0, 0, 0.45);
 }
 
 .reader-support-icon {
    margin-bottom: 12px;
 
    font-size: 36px;
+   line-height: 1;
 }
 
 .reader-support h2 {
    margin: 0;
+
+   color: #ffffff;
 
    font-size: 22px;
    font-weight: 700;
@@ -217,61 +228,19 @@ button {
 .reader-support p {
    max-width: 320px;
 
-   margin: 10px 0 20px;
+   margin: 10px 0 22px;
+
+   color: #a3a3a3;
 
    font-size: 14px;
-   line-height: 1.5;
-
-   opacity: 0.7;
-}
-
-.reader-support-button {
-   width: 100%;
-   max-width: 280px;
-
-   padding: 14px 20px;
-
-   border: 0;
-   border-radius: 14px;
-
-   font-size: 15px;
-   font-weight: 600;
-
-   cursor: pointer;
-
-   color: #ffffff;
-   background: #8b5cf6;
-}
-
-.reader-support-button:active {
-   transform: scale(0.98);
-}
-
-.reader-support-note {
-   margin-top: 12px;
-
-   font-size: 12px;
-
-   opacity: 0.55;
+   line-height: 1.55;
 }
 
 .support-progress {
    width: 100%;
    max-width: 320px;
-   margin-bottom: 20px;
-   padding: 14px 16px;
 
-   border: 1px solid rgba(168, 85, 247, 0.18);
-   border-radius: 16px;
-
-   background:
-      linear-gradient(135deg,
-         rgba(139, 92, 246, 0.1),
-         rgba(236, 72, 153, 0.04));
-
-   box-shadow:
-      0 8px 30px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+   margin-bottom: 22px;
 }
 
 .support-progress-header {
@@ -281,66 +250,95 @@ button {
    gap: 12px;
 
    margin-bottom: 10px;
+
    font-size: 13px;
 }
 
 .support-progress-header span {
-   color: #a1a1aa;
+   color: #a3a3a3;
    font-weight: 500;
 }
 
 .support-progress-header strong {
    white-space: nowrap;
 
-   color: #e9d5ff;
+   color: #c084fc;
+
    font-size: 13px;
    font-weight: 700;
 }
 
 .support-progress-track {
-   position: relative;
-
    width: 100%;
-   height: 9px;
+   height: 8px;
 
    overflow: hidden;
+
    border-radius: 999px;
 
-   background: rgba(255, 255, 255, 0.08);
+   background: #2a2a2a;
 
    box-shadow:
-      inset 0 1px 3px rgba(0, 0, 0, 0.4);
+      inset 0 1px 2px rgba(0, 0, 0, 0.65);
 }
 
 .support-progress-fill {
-   position: relative;
-
    height: 100%;
    min-width: 4px;
 
    border-radius: inherit;
 
-   background: linear-gradient(90deg,
+   background:
+      linear-gradient(90deg,
          #7c3aed 0%,
-         #a855f7 55%,
-         #ec4899 100%);
+         #8b5cf6 45%,
+         #c084fc 100%);
 
    box-shadow:
-      0 0 12px rgba(168, 85, 247, 0.55),
-      0 0 24px rgba(236, 72, 153, 0.2);
+      0 0 10px rgba(139, 92, 246, 0.5);
 
-   transition: width 0.5s ease;
+   transition: width 0.4s ease;
 }
 
-.support-progress-fill::after {
-   content: "";
+.reader-support-button {
+   width: 100%;
+   max-width: 320px;
 
-   position: absolute;
-   inset: 0;
+   padding: 15px 20px;
 
-   border-radius: inherit;
+   border: 0;
+   border-radius: 14px;
 
-   background: linear-gradient(180deg,
-         rgba(255, 255, 255, 0.25),
-         transparent);
+   color: #ffffff;
+
+   background:
+      linear-gradient(90deg,
+         #7c3aed 0%,
+         #8b5cf6 55%,
+         #a855f7 100%);
+
+   font-size: 15px;
+   font-weight: 700;
+
+   box-shadow:
+      0 8px 24px rgba(124, 58, 237, 0.28);
+
+   cursor: pointer;
+
+   transition:
+      transform 0.15s ease,
+      opacity 0.15s ease;
+}
+
+.reader-support-button:active {
+   transform: scale(0.98);
+   opacity: 0.9;
+}
+
+.reader-support-note {
+   margin-top: 14px;
+
+   color: #737373;
+
+   font-size: 12px;
 }
