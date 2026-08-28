@@ -35,13 +35,22 @@ const BOT_USERNAME = "YOURSUNBAEBOT";
 
 function App() {
   const telegramStartParam =
-    window.Telegram?.WebApp?.initDataUnsafe?.start_param;
+   window.Telegram?.WebApp?.initDataUnsafe?.start_param;
 
-  const urlBatch =
-    new URLSearchParams(window.location.search).get("batch");
+   const searchParams =
+   new URLSearchParams(window.location.search);
 
-  const rawBatch = telegramStartParam || urlBatch;
+   const telegramUrlStartParam =
+   searchParams.get("tgWebAppStartParam");
 
+   const legacyBatch =
+   searchParams.get("batch");
+
+   const rawBatch =
+   telegramStartParam ||
+   telegramUrlStartParam ||
+      legacyBatch;
+   
   const batchId = rawBatch?.startsWith("batch_")
     ? rawBatch.replace("batch_", "")
     : rawBatch;
