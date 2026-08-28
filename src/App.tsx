@@ -30,12 +30,21 @@ type SupportProgress = {
   goal: number;
 };
 
-const API_URL = "http://127.0.0.1:3001";
+const API_URL = "https://api.173.249.59.215.sslip.io";
 const BOT_USERNAME = "YOURSUNBAEBOT";
 
 function App() {
-  const params = new URLSearchParams(window.location.search);
-  const batchId = params.get("batch");
+  const telegramStartParam =
+    window.Telegram?.WebApp?.initDataUnsafe?.start_param;
+
+  const urlBatch =
+    new URLSearchParams(window.location.search).get("batch");
+
+  const rawBatch = telegramStartParam || urlBatch;
+
+  const batchId = rawBatch?.startsWith("batch_")
+    ? rawBatch.replace("batch_", "")
+    : rawBatch;
 
   const [batch, setBatch] = useState<BatchResponse | null>(null);
   const [selectedManga, setSelectedManga] = useState<MangaResponse | null>(
