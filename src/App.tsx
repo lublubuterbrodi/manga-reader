@@ -30,7 +30,7 @@ type SupportProgress = {
   goal: number;
 };
 
-const API_URL = "";
+const API_URL = "https://api.yourreadingmanga.net";
 const BOT_USERNAME = "YOURSUNBAEBOT";
 
 function App() {
